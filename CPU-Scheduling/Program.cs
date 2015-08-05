@@ -16,7 +16,7 @@ namespace CPU_Scheduling
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FirstComeFirstServed());
+            Application.Run(new MainForm());
         }
     }
 }
