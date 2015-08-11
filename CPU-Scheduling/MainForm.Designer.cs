@@ -31,6 +31,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.process_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.arrival_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cpu_burst = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.listView5 = new System.Windows.Forms.ListView();
             this.button7 = new System.Windows.Forms.Button();
@@ -39,9 +42,6 @@
             this.buttonInsert = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonRun = new System.Windows.Forms.Button();
-            this.process_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.arrival_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cpu_burst = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox7.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -53,7 +53,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Lucida Bright", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(15, 34);
+            this.label3.Location = new System.Drawing.Point(15, 32);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 15);
             this.label3.TabIndex = 2;
@@ -62,15 +62,17 @@
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Lucida Bright", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(117, 31);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(48, 22);
+            this.textBox1.Size = new System.Drawing.Size(48, 20);
             this.textBox1.TabIndex = 1;
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.process_number,
@@ -80,6 +82,27 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(301, 296);
             this.dataGridView1.TabIndex = 11;
+            // 
+            // process_number
+            // 
+            this.process_number.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.process_number.HeaderText = "Process Number";
+            this.process_number.Name = "process_number";
+            this.process_number.Width = 101;
+            // 
+            // arrival_time
+            // 
+            this.arrival_time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.arrival_time.HeaderText = "Arrival Time";
+            this.arrival_time.Name = "arrival_time";
+            this.arrival_time.Width = 80;
+            // 
+            // cpu_burst
+            // 
+            this.cpu_burst.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.cpu_burst.HeaderText = "CPU Burst";
+            this.cpu_burst.Name = "cpu_burst";
+            this.cpu_burst.Width = 75;
             // 
             // groupBox7
             // 
@@ -130,7 +153,7 @@
             this.groupBox1.Controls.Add(this.buttonInsert);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Font = new System.Drawing.Font("Lucida Bright", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(96, 82);
+            this.groupBox1.Location = new System.Drawing.Point(96, 91);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(174, 109);
             this.groupBox1.TabIndex = 4;
@@ -140,7 +163,7 @@
             // buttonInsert
             // 
             this.buttonInsert.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonInsert.Font = new System.Drawing.Font("Lucida Bright", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonInsert.Location = new System.Drawing.Point(62, 62);
             this.buttonInsert.Name = "buttonInsert";
             this.buttonInsert.Size = new System.Drawing.Size(59, 23);
@@ -151,6 +174,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel2.Controls.Add(this.buttonRun);
             this.panel2.Controls.Add(this.dataGridView1);
@@ -165,34 +189,14 @@
             // 
             // buttonRun
             // 
-            this.buttonRun.Location = new System.Drawing.Point(96, 213);
+            this.buttonRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRun.Location = new System.Drawing.Point(147, 220);
             this.buttonRun.Name = "buttonRun";
             this.buttonRun.Size = new System.Drawing.Size(75, 23);
             this.buttonRun.TabIndex = 12;
             this.buttonRun.Text = "Run";
             this.buttonRun.UseVisualStyleBackColor = true;
             this.buttonRun.Click += new System.EventHandler(this.buttonRun_Click);
-            // 
-            // process_number
-            // 
-            this.process_number.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.process_number.HeaderText = "Process Number";
-            this.process_number.Name = "process_number";
-            this.process_number.Width = 101;
-            // 
-            // arrival_time
-            // 
-            this.arrival_time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.arrival_time.HeaderText = "Arrival Time";
-            this.arrival_time.Name = "arrival_time";
-            this.arrival_time.Width = 80;
-            // 
-            // cpu_burst
-            // 
-            this.cpu_burst.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.cpu_burst.HeaderText = "CPU Burst";
-            this.cpu_burst.Name = "cpu_burst";
-            this.cpu_burst.Width = 75;
             // 
             // MainForm
             // 

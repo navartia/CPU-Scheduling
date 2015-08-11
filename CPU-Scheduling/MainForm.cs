@@ -36,7 +36,7 @@ namespace CPU_Scheduling
 
         private void buttonRun_Click(object sender, EventArgs e)
         {
-            int length = dataGridView1.Rows.Count - 1;
+            int length = dataGridView1.Rows.Count;
             Process[] processArray = new Process[length];
             for(int i = 0; i < length; i ++)
             {
@@ -54,6 +54,7 @@ namespace CPU_Scheduling
             DataTable eventData = fcfs.GetEventData();
 
             this.Hide();
+
             ProcessResultForm prf = new ProcessResultForm(processData, eventData);
             prf.ShowDialog();
 

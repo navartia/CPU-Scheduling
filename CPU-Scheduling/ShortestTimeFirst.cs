@@ -5,11 +5,10 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace CPU_Scheduling
 {
-    public class FirstComeFirstServed
+    public class ShortestTimeFirst
     {
         private Process[] processArray;
         private Process currentProcess;
@@ -21,7 +20,7 @@ namespace CPU_Scheduling
         private Boolean isRunning;
         private int time; 
 
-        public FirstComeFirstServed(Process[] processArray)
+        public ShortestTimeFirst(Process[] processArray)
         {
             this.processArray = processArray;
 

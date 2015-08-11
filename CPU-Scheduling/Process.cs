@@ -13,11 +13,11 @@ namespace CPU_Scheduling
         public String name { get; private set; }
         public int arrivalTime { get; private set; }
         public int cpuBurst { get; private set; }
-        public int waitingTime { get; private set; }
-        public int turnaroundTime { get; private set; }
-
-        public int startTime { get; set; }
         public int remainingTime { get; private set; }
+
+        public int waitingTime { get; set; }
+        public int turnaroundTime { get; set; }
+        public int startTime { get; set; }
         public int endTime { get; set; }
 
         private Boolean isReady;
@@ -54,9 +54,6 @@ namespace CPU_Scheduling
             isReady = false;
             isRunning = true;
 
-            ComputeForWaitingTime();
-            ComputeForTurnaroundTime();
-
             remainingTime -= 1;
             
             if (remainingTime <= 0)
@@ -64,16 +61,6 @@ namespace CPU_Scheduling
                 isTerminated = true;
                 isRunning = false;
             }
-        }
-
-        private void ComputeForWaitingTime() 
-        {
-            waitingTime += startTime - endTime;
-        }
-
-        private void ComputeForTurnaroundTime()
-        {
-            turnaroundTime = waitingTime + cpuBurst;
         }
 
         public Boolean IsReady()
