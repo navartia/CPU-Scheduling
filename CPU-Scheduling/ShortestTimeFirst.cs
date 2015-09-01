@@ -5,15 +5,16 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CPU_Scheduling
 {
-    public class ShortestTimeFirst
+    public class ShortestTimeFirst : SchedulingAlgorithm
     {
         private Process[] processArray;
         private Process currentProcess;
 
-        private Queue readyQueue;
+        private PriorityQueue<Process> readyQueue;
         private Queue finishedQueue;
         private Queue eventQueue;
 
@@ -24,7 +25,7 @@ namespace CPU_Scheduling
         {
             this.processArray = processArray;
 
-            readyQueue = new Queue();
+            readyQueue = new PriorityQueue<Process>();
             finishedQueue = new Queue();
             eventQueue = new Queue();
 
@@ -33,7 +34,7 @@ namespace CPU_Scheduling
         }
 
         //Public Methods
-        public void Run()
+        public override void Run()
         {
             currentProcess = null;
             while (!SchedulingIsDone())
@@ -69,7 +70,7 @@ namespace CPU_Scheduling
             }
         }
 
-        public DataTable GetProcessData()
+        public override DataTable GetProcessData()
         {
             DataTable processData = new DataTable();
             processData.Columns.Add("Process Number");
@@ -90,7 +91,7 @@ namespace CPU_Scheduling
             return processData;
         }
 
-        public DataTable GetEventData()
+        public override DataTable GetEventData()
         {
             DataTable eventData = new DataTable();
             eventData.Columns.Add("Process Number");
@@ -115,14 +116,14 @@ namespace CPU_Scheduling
                 if (process.arrivalTime == time)
                 {
                     process.Ready();
-                    readyQueue.Enqueue(process);
+                    readyQueue.Enqueue(process, process.cpuBurst);
                 }
             }
         }
 
         private void LoadProcessIntoCPU()
         {
-            currentProcess = readyQueue.Dequeue() as Process;
+            currentProcess = readyQueue.Dequeue();
             currentProcess.startTime = time;
         }
 
@@ -174,7 +175,7 @@ namespace CPU_Scheduling
 
         private Boolean ThereIsProcessInReadyQueue()
         {
-            return readyQueue.Count > 0;
+            return readyQueue.Length() > 0;
         }
 
         private Boolean NothingRuns()

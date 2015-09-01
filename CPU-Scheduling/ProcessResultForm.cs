@@ -73,15 +73,5 @@ namespace CPU_Scheduling
                 e.Graphics.DrawString(processName, font, text, (xStart + xEnd) / 2 - 10, 70f);
             }
         }
-
-        private void createLabel(String text, int x, int y)
-        {
-            Label label = new Label();
-            label.Text = text;
-            Size size = label.Size;
-            label.Location = new Point(x - size.Width / 2, y - size.Height / 2);
-            label.BackColor = Color.Transparent;
-            this.panel1.Controls.Add(label);
-        }
     }
 }

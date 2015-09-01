@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace CPU_Scheduling
 {
-    public class FirstComeFirstServed
+    public class FirstComeFirstServed : SchedulingAlgorithm
     {
         private Process[] processArray;
         private Process currentProcess;
@@ -34,7 +34,7 @@ namespace CPU_Scheduling
         }
 
         //Public Methods
-        public void Run()
+        public override void Run()
         {
             currentProcess = null;
             while (!SchedulingIsDone())
@@ -70,7 +70,7 @@ namespace CPU_Scheduling
             }
         }
 
-        public DataTable GetProcessData()
+        public override DataTable GetProcessData()
         {
             DataTable processData = new DataTable();
             processData.Columns.Add("Process Number");
@@ -91,7 +91,7 @@ namespace CPU_Scheduling
             return processData;
         }
 
-        public DataTable GetEventData()
+        public override DataTable GetEventData()
         {
             DataTable eventData = new DataTable();
             eventData.Columns.Add("Process Number");

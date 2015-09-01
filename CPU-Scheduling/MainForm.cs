@@ -12,17 +12,17 @@ namespace CPU_Scheduling
 {
     public partial class MainForm : Form
     {
-        private int processNumber;
+        private int mode;
 
         public MainForm()
         {
             InitializeComponent();
-
-            processNumber = 0;
         }
 
         private void buttonInsert_Click(object sender, EventArgs e)
         {
+            int processNumber;
+
             dataGridView1.Rows.Clear();
             processNumber = Convert.ToInt32(textBox1.Text);
 
@@ -47,11 +47,22 @@ namespace CPU_Scheduling
                 processArray[i] = new Process(name, arrivalTime, cpuBurst);
             }
 
-            FirstComeFirstServed fcfs = new FirstComeFirstServed(processArray);
-            fcfs.Run();
+            SchedulingAlgorithm scheduler = new FirstComeFirstServed(processArray);
+            switch (mode)
+            {
+                case 0:
+                    scheduler = new FirstComeFirstServed(processArray);
+                    MessageBox.Show("FCFS");
+                    break;
+                case 1:
+                    scheduler = new ShortestTimeFirst(processArray);
+                    MessageBox.Show("STF");
+                    break;
+            }
 
-            DataTable processData = fcfs.GetProcessData();
-            DataTable eventData = fcfs.GetEventData();
+            scheduler.Run();
+            DataTable processData = scheduler.GetProcessData();
+            DataTable eventData = scheduler.GetEventData();
 
             this.Hide();
 
@@ -59,6 +70,18 @@ namespace CPU_Scheduling
             prf.ShowDialog();
 
             this.Show();
+        }
+
+        private void radioButtonFCFS_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonFCFS.Checked)
+                mode = 0;
+        }
+
+        private void radioButtonSTF_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonSTF.Checked)
+                mode = 1;
         }
     }
 }
