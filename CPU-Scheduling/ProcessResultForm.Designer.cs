@@ -112,6 +112,7 @@
             this.Name = "ProcessResultForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Process Result";
+            this.Resize += new System.EventHandler(this.ProcessResultForm_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -43,9 +43,9 @@ namespace CPU_Scheduling
             Brush[] processColor = new Brush[processCount];
             for (int i = 0; i < processCount; i++)
             {
-                int red = randomGen.Next(100, byte.MaxValue + 1);
-                int blue = randomGen.Next(100, byte.MaxValue + 1);
-                int green = randomGen.Next(100, byte.MaxValue + 1);
+                int red = randomGen.Next(50, byte.MaxValue + 1);
+                int blue = randomGen.Next(50, byte.MaxValue + 1);
+                int green = randomGen.Next(50, byte.MaxValue + 1);
                 processColor[i] = new SolidBrush(Color.FromArgb(red, green, blue));
             }
 
@@ -56,7 +56,9 @@ namespace CPU_Scheduling
                 int endTime = Convert.ToInt32(row["End Time"].ToString());
                 String processName = row["Process Number"].ToString();
                 int processNumber = Convert.ToInt32(processName.Substring(7)) - 1;
- 
+
+                Console.WriteLine(processName + " " + startTime + " " + endTime);
+
                 int xStart = (startTime * 750) / maxTime + 17;
                 int xEnd = (endTime * 750) /maxTime + 17;
                 e.Graphics.FillRectangle(processColor[processNumber], new Rectangle(xStart, 45, xEnd - xStart, 60));
@@ -72,6 +74,11 @@ namespace CPU_Scheduling
                 e.Graphics.DrawString(endTime.ToString(), font, text, xEnd, 22f);
                 e.Graphics.DrawString(processName, font, text, (xStart + xEnd) / 2 - 10, 70f);
             }
+        }
+
+        private void ProcessResultForm_Resize(object sender, EventArgs e)
+        {
+
         }
     }
 }

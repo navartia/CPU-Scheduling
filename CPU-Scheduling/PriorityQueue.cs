@@ -27,12 +27,14 @@ namespace CPU_Scheduling
             {
                 for (int i = 0; i < count; i++)
                 {
+                    //Check if the new object has same priority
                     if (priority == Convert.ToInt32(priorityArray[i]))
                     {
                         queue = queueArray[i] as Queue<T>;
                         queue.Enqueue(input);
-                        break;
+                        return;
                     }
+                    //Check if the new object has higher priority
                     else if (priority < Convert.ToInt32(priorityArray[i]))
                     {
                         queue = new Queue<T>();
@@ -40,9 +42,16 @@ namespace CPU_Scheduling
 
                         queueArray.Insert(i, queue);
                         priorityArray.Insert(i, priority);
-                        break;
+                        return;
                     }
                 }
+
+                //This means that the new object has the lowest priority
+                queue = new Queue<T>();
+                queue.Enqueue(input);
+
+                queueArray.Add(queue);
+                priorityArray.Add(priority);
             }
             else
             {
@@ -67,6 +76,21 @@ namespace CPU_Scheduling
                     queueArray.RemoveAt(0);
                     priorityArray.RemoveAt(0);
                 }
+                return returnVal;
+            }
+            else
+            {
+                return default(T);
+            }
+        }
+
+        public T Peek()
+        {
+            if (queueArray.Count != 0)
+            {
+                Queue<T> queue = queueArray[0] as Queue<T>;
+
+                T returnVal = queue.Peek();
 
                 return returnVal;
             }

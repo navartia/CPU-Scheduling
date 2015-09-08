@@ -63,6 +63,11 @@ namespace CPU_Scheduling
             }
         }
 
+        public Process Clone()
+        {
+            return this.MemberwiseClone() as Process;
+        }
+
         public Boolean IsReady()
         {
             return isReady;

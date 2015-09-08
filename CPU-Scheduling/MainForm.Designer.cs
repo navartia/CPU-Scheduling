@@ -31,6 +31,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.process_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.arrival_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cpu_burst = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonInsert = new System.Windows.Forms.Button();
@@ -39,9 +42,7 @@
             this.radioButtonSTF = new System.Windows.Forms.RadioButton();
             this.radioButtonFCFS = new System.Windows.Forms.RadioButton();
             this.buttonRun = new System.Windows.Forms.Button();
-            this.process_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.arrival_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cpu_burst = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.radioButtonSRTF = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -85,6 +86,28 @@
             this.dataGridView1.Size = new System.Drawing.Size(386, 296);
             this.dataGridView1.TabIndex = 11;
             // 
+            // process_number
+            // 
+            this.process_number.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.process_number.FillWeight = 4F;
+            this.process_number.HeaderText = "Process Number";
+            this.process_number.Name = "process_number";
+            this.process_number.ReadOnly = true;
+            // 
+            // arrival_time
+            // 
+            this.arrival_time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.arrival_time.FillWeight = 2F;
+            this.arrival_time.HeaderText = "Arrival Time";
+            this.arrival_time.Name = "arrival_time";
+            // 
+            // cpu_burst
+            // 
+            this.cpu_burst.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cpu_burst.FillWeight = 2F;
+            this.cpu_burst.HeaderText = "CPU Burst";
+            this.cpu_burst.Name = "cpu_burst";
+            // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -105,9 +128,9 @@
             this.groupBox1.Controls.Add(this.buttonInsert);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Font = new System.Drawing.Font("Lucida Bright", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(66, 82);
+            this.groupBox1.Location = new System.Drawing.Point(25, 82);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(210, 114);
+            this.groupBox1.Size = new System.Drawing.Size(251, 114);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Enter No. Of Process";
@@ -116,7 +139,7 @@
             // 
             this.buttonInsert.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonInsert.Location = new System.Drawing.Point(80, 64);
+            this.buttonInsert.Location = new System.Drawing.Point(100, 64);
             this.buttonInsert.Name = "buttonInsert";
             this.buttonInsert.Size = new System.Drawing.Size(59, 23);
             this.buttonInsert.TabIndex = 3;
@@ -142,12 +165,13 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox2.Controls.Add(this.radioButtonSRTF);
             this.groupBox2.Controls.Add(this.radioButtonSTF);
             this.groupBox2.Controls.Add(this.radioButtonFCFS);
             this.groupBox2.Font = new System.Drawing.Font("Lucida Bright", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(66, 217);
+            this.groupBox2.Location = new System.Drawing.Point(25, 217);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(210, 115);
+            this.groupBox2.Size = new System.Drawing.Size(251, 115);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Scheduling Algorithm";
@@ -155,7 +179,7 @@
             // radioButtonSTF
             // 
             this.radioButtonSTF.AutoSize = true;
-            this.radioButtonSTF.Location = new System.Drawing.Point(6, 39);
+            this.radioButtonSTF.Location = new System.Drawing.Point(6, 44);
             this.radioButtonSTF.Name = "radioButtonSTF";
             this.radioButtonSTF.Size = new System.Drawing.Size(149, 19);
             this.radioButtonSTF.TabIndex = 14;
@@ -188,27 +212,17 @@
             this.buttonRun.UseVisualStyleBackColor = true;
             this.buttonRun.Click += new System.EventHandler(this.buttonRun_Click);
             // 
-            // process_number
+            // radioButtonSRTF
             // 
-            this.process_number.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.process_number.FillWeight = 4F;
-            this.process_number.HeaderText = "Process Number";
-            this.process_number.Name = "process_number";
-            this.process_number.ReadOnly = true;
-            // 
-            // arrival_time
-            // 
-            this.arrival_time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.arrival_time.FillWeight = 2F;
-            this.arrival_time.HeaderText = "Arrival Time";
-            this.arrival_time.Name = "arrival_time";
-            // 
-            // cpu_burst
-            // 
-            this.cpu_burst.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cpu_burst.FillWeight = 2F;
-            this.cpu_burst.HeaderText = "CPU Burst";
-            this.cpu_burst.Name = "cpu_burst";
+            this.radioButtonSRTF.AutoSize = true;
+            this.radioButtonSRTF.Location = new System.Drawing.Point(6, 69);
+            this.radioButtonSRTF.Name = "radioButtonSRTF";
+            this.radioButtonSRTF.Size = new System.Drawing.Size(220, 19);
+            this.radioButtonSRTF.TabIndex = 15;
+            this.radioButtonSRTF.TabStop = true;
+            this.radioButtonSRTF.Text = "Shortest Remaining Time First";
+            this.radioButtonSRTF.UseVisualStyleBackColor = true;
+            this.radioButtonSRTF.CheckedChanged += new System.EventHandler(this.radioButtonSRTF_CheckedChanged);
             // 
             // MainForm
             // 
@@ -246,6 +260,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn process_number;
         private System.Windows.Forms.DataGridViewTextBoxColumn arrival_time;
         private System.Windows.Forms.DataGridViewTextBoxColumn cpu_burst;
+        private System.Windows.Forms.RadioButton radioButtonSRTF;
     }
 }
 

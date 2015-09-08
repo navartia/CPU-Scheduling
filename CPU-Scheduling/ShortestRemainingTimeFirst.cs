@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace CPU_Scheduling
 {
-    public class FirstComeFirstServed : SchedulingAlgorithm
+    public class ShortestRemainingTimeFirst : SchedulingAlgorithm
     {
-        public FirstComeFirstServed(Process[] processArray) : base(processArray)
+        public ShortestRemainingTimeFirst(Process[] processArray) : base(processArray)
         {
-            isPreemptive = false;
+            isPreemptive = true;
         }
 
         //Overriden Methods
@@ -24,21 +24,24 @@ namespace CPU_Scheduling
                 if (process.arrivalTime == time)
                 {
                     process.Ready();
-                    readyQueue.Enqueue(process, process.arrivalTime);
+                    readyQueue.Enqueue(process, process.cpuBurst);
                 }
             }
         }
 
         protected override Boolean SwappingNow()
         {
-            //Nothing here FCFS is non-preemptive
-            return false;
+            Process top = readyQueue.Peek();
+
+            if (top != null && currentProcess != null)
+                return top.cpuBurst < currentProcess.remainingTime;
+            else
+                return false;
         }
 
         protected override void SwapLogic()
         {
-            //Nothing here FCFS is non-preemptive
-            return;
+            readyQueue.Enqueue(currentProcess, currentProcess.remainingTime);
         }
     }
 }

@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace CPU_Scheduling
 {
-    public class ShortestTimeFirst : SchedulingAlgorithm
+    public class RoundRobin : SchedulingAlgorithm
     {
-        public ShortestTimeFirst(Process[] processArray) : base(processArray)
+        public RoundRobin(Process[] processArray) : base(processArray)
         {
-            isPreemptive = false;
+            isPreemptive = true;
         }
 
-        //Overriden Methods
         protected override void CheckForArrival()
         {
             foreach (Process process in processArray)
@@ -31,14 +27,25 @@ namespace CPU_Scheduling
 
         protected override Boolean SwappingNow()
         {
-            //Nothing here STF is non-preemptive
-            return false;
+            return 
         }
 
         protected override void SwapLogic()
         {
-            //Nothing here STF is non-preemptive
-            return;
+            readyQueue.Enqueue(currentProcess, currentProcess.remainingTime);
+        }
+
+        private int CalculateQuantum()
+        {
+            int returnVal = 0;
+
+            int count = processArray.Length;
+            foreach (Process process in processArray)
+            {
+                returnVal = returnVal + process.cpuBurst;
+            }
+
+            return Convert.ToInt32((returnVal / count) * 0.8);
         }
     }
 }
