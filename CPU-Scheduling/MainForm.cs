@@ -62,6 +62,10 @@ namespace CPU_Scheduling
                     scheduler = new ShortestRemainingTimeFirst(processArray);
                     MessageBox.Show("SRTF");
                     break;
+                case 3:
+                    scheduler = new RoundRobin(processArray);
+                    MessageBox.Show("RR");
+                    break;
             }
 
             scheduler.Run();
@@ -92,6 +96,12 @@ namespace CPU_Scheduling
         {
             if (radioButtonSRTF.Checked)
                 mode = 2;
+        }
+
+        private void radioButtonRR_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonRR.Checked)
+                mode = 3;
         }
     }
 }

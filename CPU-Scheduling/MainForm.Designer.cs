@@ -43,6 +43,7 @@
             this.radioButtonFCFS = new System.Windows.Forms.RadioButton();
             this.buttonRun = new System.Windows.Forms.Button();
             this.radioButtonSRTF = new System.Windows.Forms.RadioButton();
+            this.radioButtonRR = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -80,10 +81,10 @@
             this.process_number,
             this.arrival_time,
             this.cpu_burst});
-            this.dataGridView1.Location = new System.Drawing.Point(301, 82);
+            this.dataGridView1.Location = new System.Drawing.Point(301, 76);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(386, 296);
+            this.dataGridView1.Size = new System.Drawing.Size(386, 361);
             this.dataGridView1.TabIndex = 11;
             // 
             // process_number
@@ -128,7 +129,7 @@
             this.groupBox1.Controls.Add(this.buttonInsert);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Font = new System.Drawing.Font("Lucida Bright", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(25, 82);
+            this.groupBox1.Location = new System.Drawing.Point(25, 76);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(251, 114);
             this.groupBox1.TabIndex = 4;
@@ -159,19 +160,20 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(734, 411);
+            this.panel2.Size = new System.Drawing.Size(734, 461);
             this.panel2.TabIndex = 2;
             // 
             // groupBox2
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox2.Controls.Add(this.radioButtonRR);
             this.groupBox2.Controls.Add(this.radioButtonSRTF);
             this.groupBox2.Controls.Add(this.radioButtonSTF);
             this.groupBox2.Controls.Add(this.radioButtonFCFS);
             this.groupBox2.Font = new System.Drawing.Font("Lucida Bright", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(25, 217);
+            this.groupBox2.Location = new System.Drawing.Point(25, 201);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(251, 115);
+            this.groupBox2.Size = new System.Drawing.Size(251, 207);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Scheduling Algorithm";
@@ -204,7 +206,7 @@
             // 
             this.buttonRun.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRun.Location = new System.Drawing.Point(201, 355);
+            this.buttonRun.Location = new System.Drawing.Point(201, 414);
             this.buttonRun.Name = "buttonRun";
             this.buttonRun.Size = new System.Drawing.Size(75, 23);
             this.buttonRun.TabIndex = 12;
@@ -224,11 +226,23 @@
             this.radioButtonSRTF.UseVisualStyleBackColor = true;
             this.radioButtonSRTF.CheckedChanged += new System.EventHandler(this.radioButtonSRTF_CheckedChanged);
             // 
+            // radioButtonRR
+            // 
+            this.radioButtonRR.AutoSize = true;
+            this.radioButtonRR.Location = new System.Drawing.Point(6, 94);
+            this.radioButtonRR.Name = "radioButtonRR";
+            this.radioButtonRR.Size = new System.Drawing.Size(109, 19);
+            this.radioButtonRR.TabIndex = 16;
+            this.radioButtonRR.TabStop = true;
+            this.radioButtonRR.Text = "Round Robin";
+            this.radioButtonRR.UseVisualStyleBackColor = true;
+            this.radioButtonRR.CheckedChanged += new System.EventHandler(this.radioButtonRR_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 411);
+            this.ClientSize = new System.Drawing.Size(734, 461);
             this.Controls.Add(this.panel2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -260,6 +274,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn process_number;
         private System.Windows.Forms.DataGridViewTextBoxColumn arrival_time;
         private System.Windows.Forms.DataGridViewTextBoxColumn cpu_burst;
+        private System.Windows.Forms.RadioButton radioButtonRR;
         private System.Windows.Forms.RadioButton radioButtonSRTF;
     }
 }

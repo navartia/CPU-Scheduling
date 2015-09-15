@@ -30,11 +30,46 @@ namespace CPU_Scheduling
         }
 
         //Abstract Methods
-        protected abstract void CheckForArrival();
-
         protected abstract Boolean SwappingNow();
 
         protected abstract void SwapLogic();
+
+        //Virtual Methods
+        protected virtual void ProcessArrival(Process process)
+        {
+            readyQueue.Enqueue(process, process.arrivalTime);
+        }
+
+        protected virtual void ProcessLoad()
+        {
+            currentProcess = readyQueue.Dequeue() as Process;
+            currentProcess.startTime = time;
+            CalculateWaitingTime();
+        }
+
+        protected virtual void ProcessRun()
+        {
+            currentProcess.Run();
+        }
+
+        protected virtual void ProcessSwap()
+        {
+            CalculateTurnaroundTime();
+            eventQueue.Enqueue(currentProcess.Clone());
+
+            SwapLogic();
+            currentProcess = readyQueue.Dequeue() as Process;
+            currentProcess.startTime = time;
+        }
+
+        protected virtual void ProcessTermination()
+        {
+            CalculateTurnaroundTime();
+            eventQueue.Enqueue(currentProcess);
+
+            finishedQueue.Enqueue(currentProcess);
+            currentProcess = null;
+        }
 
         //Public Methods
         public void Run()
@@ -46,21 +81,17 @@ namespace CPU_Scheduling
 
                 if (NothingRuns())
                 {
-                    if (ThereIsProcessInReadyQueue())
+                    if (ProcessIsInReadyQueue())
                     {
-                        LoadProcessIntoCPU();
+                        ProcessLoad();
                     }
                 }
 
-                if (ProcessIsPreemptive())
-                {
-                    if (SwappingNow())
-                        DoPreemptiveSwap();
-                }
+                CheckForPreemptiveSwap();
 
-                if (ThereIsProcessToRun())
+                if (ProcessIsLoaded())
                 {
-                    DoCPURun();
+                    ProcessRun();
                     time++;
                     
                     CheckForTermination();
@@ -112,38 +143,33 @@ namespace CPU_Scheduling
         }
 
         //Helper Methods
-        private void LoadProcessIntoCPU()
+        private void CheckForArrival()
         {
-            currentProcess = readyQueue.Dequeue() as Process;
-            currentProcess.startTime = time;
-            CalculateWaitingTime();
+            foreach (Process process in processArray)
+            {
+                if (process.arrivalTime == time)
+                {
+                    process.Ready();
+                    ProcessArrival(process);
+                }
+            }
         }
 
-        private void DoCPURun()
+        private void CheckForPreemptiveSwap()
         {
-            currentProcess.Run();
+            if (ProcessIsPreemptive())
+            {
+                if (SwappingNow())
+                    ProcessSwap();
+            }
         }
 
         private void CheckForTermination()
         {
             if (currentProcess.IsTerminated())
             {
-                CalculateTurnaroundTime();
-                eventQueue.Enqueue(currentProcess);
-
-                finishedQueue.Enqueue(currentProcess);
-                currentProcess = null;
+                ProcessTermination();
             }
-        }
-
-        private void DoPreemptiveSwap()
-        {
-            CalculateTurnaroundTime();
-            eventQueue.Enqueue(currentProcess.Clone());
-
-            SwapLogic();
-            currentProcess = readyQueue.Dequeue() as Process;
-            currentProcess.startTime = time;
         }
 
         private void CalculateWaitingTime()
@@ -158,24 +184,24 @@ namespace CPU_Scheduling
         }
 
         //Control Methods
+        private Boolean ProcessIsInReadyQueue()
+        {
+            return readyQueue.Length() > 0;
+        }
+
+        private Boolean ProcessIsLoaded()
+        {
+            return currentProcess != null;
+        }
+
         private Boolean ProcessIsPreemptive()
         {
             return isPreemptive;
         }
 
-        private Boolean ThereIsProcessToRun()
-        {
-            return currentProcess != null;
-        }
-
         private Boolean SchedulingIsDone()
         {
             return finishedQueue.Count == processArray.Length;
-        }
-
-        private Boolean ThereIsProcessInReadyQueue()
-        {
-            return readyQueue.Length() > 0;
         }
 
         private Boolean NothingRuns()

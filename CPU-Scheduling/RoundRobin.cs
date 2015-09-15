@@ -3,49 +3,66 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CPU_Scheduling
 {
     public class RoundRobin : SchedulingAlgorithm
     {
+        public int quantum { get; private set; }
+        private int quantumTick;
+
         public RoundRobin(Process[] processArray) : base(processArray)
         {
             isPreemptive = true;
+            quantumTick = 0;
+            CalculateQuantum();
         }
 
-        protected override void CheckForArrival()
+        //Overriden Methods
+        protected override void ProcessArrival(Process process)
         {
-            foreach (Process process in processArray)
-            {
-                if (process.arrivalTime == time)
-                {
-                    process.Ready();
-                    readyQueue.Enqueue(process, process.cpuBurst);
-                }
-            }
+            readyQueue.Enqueue(process, 1);
+        }
+
+        protected override void ProcessRun()
+        {
+            base.ProcessRun();
+            quantumTick++;
+        }
+
+        protected override void ProcessTermination()
+        {
+            base.ProcessTermination();
+            quantumTick = 0;
         }
 
         protected override Boolean SwappingNow()
         {
-            return 
+            return quantumTick == quantum;
         }
 
         protected override void SwapLogic()
         {
-            readyQueue.Enqueue(currentProcess, currentProcess.remainingTime);
+            readyQueue.Enqueue(currentProcess, 1);
+            quantumTick = 0;
         }
 
-        private int CalculateQuantum()
+        //Private Methods
+        private void CalculateQuantum()
         {
-            int returnVal = 0;
-
+            double average = 0;
             int count = processArray.Length;
+
             foreach (Process process in processArray)
             {
-                returnVal = returnVal + process.cpuBurst;
+                average = average + process.cpuBurst;
             }
 
-            return Convert.ToInt32((returnVal / count) * 0.8);
+            average = average / count;
+            average = average * 0.8;
+            average = Math.Ceiling(average);
+            quantum = Convert.ToInt32(average);
         }
     }
 }

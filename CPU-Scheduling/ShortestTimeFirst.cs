@@ -17,16 +17,9 @@ namespace CPU_Scheduling
         }
 
         //Overriden Methods
-        protected override void CheckForArrival()
+        protected override void ProcessArrival(Process process)
         {
-            foreach (Process process in processArray)
-            {
-                if (process.arrivalTime == time)
-                {
-                    process.Ready();
-                    readyQueue.Enqueue(process, process.cpuBurst);
-                }
-            }
+            readyQueue.Enqueue(process, process.cpuBurst);
         }
 
         protected override Boolean SwappingNow()

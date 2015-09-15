@@ -17,18 +17,6 @@ namespace CPU_Scheduling
         }
 
         //Overriden Methods
-        protected override void CheckForArrival()
-        {
-            foreach (Process process in processArray)
-            {
-                if (process.arrivalTime == time)
-                {
-                    process.Ready();
-                    readyQueue.Enqueue(process, process.arrivalTime);
-                }
-            }
-        }
-
         protected override Boolean SwappingNow()
         {
             //Nothing here FCFS is non-preemptive
