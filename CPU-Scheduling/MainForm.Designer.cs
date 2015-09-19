@@ -39,11 +39,11 @@
             this.buttonInsert = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioButtonRR = new System.Windows.Forms.RadioButton();
+            this.radioButtonSRTF = new System.Windows.Forms.RadioButton();
             this.radioButtonSTF = new System.Windows.Forms.RadioButton();
             this.radioButtonFCFS = new System.Windows.Forms.RadioButton();
             this.buttonRun = new System.Windows.Forms.Button();
-            this.radioButtonSRTF = new System.Windows.Forms.RadioButton();
-            this.radioButtonRR = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -81,10 +81,10 @@
             this.process_number,
             this.arrival_time,
             this.cpu_burst});
-            this.dataGridView1.Location = new System.Drawing.Point(301, 76);
+            this.dataGridView1.Location = new System.Drawing.Point(316, 89);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(386, 361);
+            this.dataGridView1.Size = new System.Drawing.Size(428, 344);
             this.dataGridView1.TabIndex = 11;
             // 
             // process_number
@@ -115,7 +115,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Lucida Sans", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(248, 29);
+            this.label1.Location = new System.Drawing.Point(275, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(263, 31);
             this.label1.TabIndex = 0;
@@ -129,7 +129,7 @@
             this.groupBox1.Controls.Add(this.buttonInsert);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Font = new System.Drawing.Font("Lucida Bright", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(25, 76);
+            this.groupBox1.Location = new System.Drawing.Point(30, 88);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(251, 114);
             this.groupBox1.TabIndex = 4;
@@ -153,30 +153,54 @@
             this.panel2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel2.Controls.Add(this.groupBox2);
-            this.panel2.Controls.Add(this.buttonRun);
             this.panel2.Controls.Add(this.dataGridView1);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(734, 461);
+            this.panel2.Size = new System.Drawing.Size(804, 481);
             this.panel2.TabIndex = 2;
             // 
             // groupBox2
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox2.Controls.Add(this.radioButtonRR);
+            this.groupBox2.Controls.Add(this.buttonRun);
             this.groupBox2.Controls.Add(this.radioButtonSRTF);
             this.groupBox2.Controls.Add(this.radioButtonSTF);
             this.groupBox2.Controls.Add(this.radioButtonFCFS);
             this.groupBox2.Font = new System.Drawing.Font("Lucida Bright", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(25, 201);
+            this.groupBox2.Location = new System.Drawing.Point(30, 226);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(251, 207);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Scheduling Algorithm";
+            // 
+            // radioButtonRR
+            // 
+            this.radioButtonRR.AutoSize = true;
+            this.radioButtonRR.Location = new System.Drawing.Point(6, 94);
+            this.radioButtonRR.Name = "radioButtonRR";
+            this.radioButtonRR.Size = new System.Drawing.Size(109, 19);
+            this.radioButtonRR.TabIndex = 16;
+            this.radioButtonRR.TabStop = true;
+            this.radioButtonRR.Text = "Round Robin";
+            this.radioButtonRR.UseVisualStyleBackColor = true;
+            this.radioButtonRR.CheckedChanged += new System.EventHandler(this.radioButtonRR_CheckedChanged);
+            // 
+            // radioButtonSRTF
+            // 
+            this.radioButtonSRTF.AutoSize = true;
+            this.radioButtonSRTF.Location = new System.Drawing.Point(6, 69);
+            this.radioButtonSRTF.Name = "radioButtonSRTF";
+            this.radioButtonSRTF.Size = new System.Drawing.Size(220, 19);
+            this.radioButtonSRTF.TabIndex = 15;
+            this.radioButtonSRTF.TabStop = true;
+            this.radioButtonSRTF.Text = "Shortest Remaining Time First";
+            this.radioButtonSRTF.UseVisualStyleBackColor = true;
+            this.radioButtonSRTF.CheckedChanged += new System.EventHandler(this.radioButtonSRTF_CheckedChanged);
             // 
             // radioButtonSTF
             // 
@@ -206,7 +230,7 @@
             // 
             this.buttonRun.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRun.Location = new System.Drawing.Point(201, 414);
+            this.buttonRun.Location = new System.Drawing.Point(110, 178);
             this.buttonRun.Name = "buttonRun";
             this.buttonRun.Size = new System.Drawing.Size(75, 23);
             this.buttonRun.TabIndex = 12;
@@ -214,35 +238,11 @@
             this.buttonRun.UseVisualStyleBackColor = true;
             this.buttonRun.Click += new System.EventHandler(this.buttonRun_Click);
             // 
-            // radioButtonSRTF
-            // 
-            this.radioButtonSRTF.AutoSize = true;
-            this.radioButtonSRTF.Location = new System.Drawing.Point(6, 69);
-            this.radioButtonSRTF.Name = "radioButtonSRTF";
-            this.radioButtonSRTF.Size = new System.Drawing.Size(220, 19);
-            this.radioButtonSRTF.TabIndex = 15;
-            this.radioButtonSRTF.TabStop = true;
-            this.radioButtonSRTF.Text = "Shortest Remaining Time First";
-            this.radioButtonSRTF.UseVisualStyleBackColor = true;
-            this.radioButtonSRTF.CheckedChanged += new System.EventHandler(this.radioButtonSRTF_CheckedChanged);
-            // 
-            // radioButtonRR
-            // 
-            this.radioButtonRR.AutoSize = true;
-            this.radioButtonRR.Location = new System.Drawing.Point(6, 94);
-            this.radioButtonRR.Name = "radioButtonRR";
-            this.radioButtonRR.Size = new System.Drawing.Size(109, 19);
-            this.radioButtonRR.TabIndex = 16;
-            this.radioButtonRR.TabStop = true;
-            this.radioButtonRR.Text = "Round Robin";
-            this.radioButtonRR.UseVisualStyleBackColor = true;
-            this.radioButtonRR.CheckedChanged += new System.EventHandler(this.radioButtonRR_CheckedChanged);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 461);
+            this.ClientSize = new System.Drawing.Size(804, 481);
             this.Controls.Add(this.panel2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
