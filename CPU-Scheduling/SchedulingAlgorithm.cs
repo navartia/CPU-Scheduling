@@ -37,7 +37,7 @@ namespace CPU_Scheduling
         //Virtual Methods
         protected virtual void ProcessArrival(Process process)
         {
-            readyQueue.Enqueue(process, process.arrivalTime);
+            readyQueue.Enqueue(process, 1);
         }
 
         protected virtual void ProcessLoad()
@@ -58,8 +58,7 @@ namespace CPU_Scheduling
             eventQueue.Enqueue(currentProcess.Clone());
 
             SwapLogic();
-            currentProcess = readyQueue.Dequeue() as Process;
-            currentProcess.startTime = time;
+            currentProcess = null;
         }
 
         protected virtual void ProcessTermination()
@@ -79,15 +78,10 @@ namespace CPU_Scheduling
             {
                 CheckForArrival();
 
-                if (NothingRuns())
+                if (ProcessIsInReadyQueue() && NothingRuns())
                 {
-                    if (ProcessIsInReadyQueue())
-                    {
-                        ProcessLoad();
-                    }
+                    ProcessLoad();
                 }
-
-                CheckForPreemptiveSwap();
 
                 if (ProcessIsLoaded())
                 {
@@ -95,6 +89,7 @@ namespace CPU_Scheduling
                     time++;
                     
                     CheckForTermination();
+                    CheckForPreemptiveSwap();
                 }
                 else
                 {
@@ -175,6 +170,7 @@ namespace CPU_Scheduling
         private void CalculateWaitingTime()
         {
             currentProcess.waitingTime = currentProcess.waitingTime + currentProcess.startTime - currentProcess.endTime;
+            Console.WriteLine(currentProcess.name + " " + currentProcess.waitingTime);
         }
 
         private void CalculateTurnaroundTime()

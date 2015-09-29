@@ -57,8 +57,6 @@ namespace CPU_Scheduling
                 String processName = row["Process Number"].ToString();
                 int processNumber = Convert.ToInt32(processName.Substring(7)) - 1;
 
-                Console.WriteLine(processName + " " + startTime + " " + endTime);
-
                 int xStart = (startTime * 750) / maxTime + 17;
                 int xEnd = (endTime * 750) /maxTime + 17;
                 e.Graphics.FillRectangle(processColor[processNumber], new Rectangle(xStart, 45, xEnd - xStart, 60));

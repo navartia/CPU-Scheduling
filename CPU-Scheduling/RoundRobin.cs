@@ -20,11 +20,6 @@ namespace CPU_Scheduling
         }
 
         //Overriden Methods
-        protected override void ProcessArrival(Process process)
-        {
-            readyQueue.Enqueue(process, 1);
-        }
-
         protected override void ProcessRun()
         {
             base.ProcessRun();
@@ -61,7 +56,7 @@ namespace CPU_Scheduling
 
             average = average / count;
             average = average * 0.8;
-            average = Math.Ceiling(average);
+            average = Math.Floor(average);
             quantum = Convert.ToInt32(average);
         }
     }
